@@ -43,12 +43,12 @@ contract = load_contract()
 # C- Helper functions to pin files and json to Pinata
 
 
-def pin_hotel_reservation(hotel_name, hotel_confirmation_file):
+def pin_hotel_reservation(hotel_name):
     # Pin the file to IPFS with Pinata
-    ipfs_file_hash = pin_file_to_ipfs(hotel_confirmation_file.getvalue())
+    ## ipfs_file_hash = pin_file_to_ipfs(hotel_confirmation_file.getvalue())
 
     # Build a token metadata file for the Hotel Reservation
-    token_json = {"name": hotel_name, "image": ipfs_file_hash}
+    token_json = {"name": hotel_name}
     json_data = convert_data_to_json(token_json)
 
     # Pin the json to IPFS with Pinata
@@ -83,7 +83,7 @@ def add_bg_from_url():
     )
 
 
-add_bg_from_url()
+## add_bg_from_url()
 
 # D-  Minting/Tokenizing the Hotel Reservations
 
@@ -92,6 +92,7 @@ st.title("Hotel Reservation NFT System")
 # Create blank dataframes for Streamlit
 hotel_price_df = pd.DataFrame()
 selectable_hotel_dict = {}
+hotel_price_df = pd.DataFrame(columns=['Hotel Name', 'Average Price', 'Total Price'])
 
 # Room input details
 city = st.text_input('Which city would you like to search?')
@@ -160,47 +161,47 @@ chosen_average_price = hotel_price_df.loc[chosen_hotel , 'Average Price']
 chosen_total_price = hotel_price_df.loc[chosen_hotel , 'Total Price']
 
 accounts = w3.eth.accounts
-if st.checkbox("Do you want to Tokenize your Reservation at this time"):
-    st.write("Input an account to get started")
-    address = st.text_input("Input Account Address")
-    st.markdown("---")
+## if st.checkbox("Do you want to Tokenize your Reservation at this time"):
+st.write("Input an account to get started")
+address = st.text_input("Input Account Address")
+st.markdown("---")
 
-    st.markdown("## Tokenize Hotel Reservation")
-    hotel_name = st.text(chosen_hotel)
-    hotel_room_value = st.text(chosen_total_price)
-    hotel_confirmation = st.text_input("Enter the reservation confirmation")
-    file = st.file_uploader("Upload Confirmation Receipt")
-    if st.button("Tokenize Hotel Reservation"):
-        # Use the `pin_hotel_reservation` helper function to pin the file to IPFS
-        hotel_reservation_ipfs_hash = pin_hotel_reservation(hotel_name, file)
-        hotel_reservation_uri = f"ipfs://{hotel_reservation_ipfs_hash}"
-        tx_hash = contract.functions.registerHotelReservation(
-            address,
-            hotel_name,
-            str(checkin_date),
-            str(checkout_date),
-            str(hotel_confirmation),
-            int(hotel_room_value),
-            hotel_reservation_uri,
-        ).transact({"from": address, "gas": 1000000})
-        with st.spinner("Tokenizing Reservation ..."):
-            time.sleep(10)
-        st.success("Success!")
-        st.balloons()
-        receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-        st.write("Transaction receipt mined:")
-        st.write(dict(receipt))
-        st.write(
-            "You can view the pinned metadata file with the following IPFS Gateway Link"
-        )
-        st.markdown(
-            f"[Hotel Reservation IPFS Gateway Link](https://ipfs.io/ipfs/{hotel_reservation_ipfs_hash})"
-        )
-    st.markdown("---")
+st.markdown("## Tokenize Hotel Reservation")
+hotel_name = st.text(chosen_hotel)
+hotel_room_value = st.text(chosen_total_price)
+hotel_confirmation = st.text_input("Enter the reservation confirmation")
+## file = st.file_uploader("Upload Confirmation Receipt")
+if st.button("Tokenize Hotel Reservation"):
+    # Use the `pin_hotel_reservation` helper function to pin the file to IPFS
+    hotel_reservation_ipfs_hash = pin_hotel_reservation(chosen_hotel)
+    hotel_reservation_uri = f"ipfs://{hotel_reservation_ipfs_hash}"
+    tx_hash = contract.functions.registerHotelReservation(
+        address,
+        str(chosen_hotel),
+        str(checkin_date),
+        str(checkout_date),
+        str(hotel_confirmation),
+        int(chosen_total_price),
+        hotel_reservation_uri,
+    ).transact({"from": address, "gas": 1000000})
+    with st.spinner("Tokenizing Reservation ..."):
+        time.sleep(10)
+    st.success("Success!")
+    st.balloons()
+    receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+    st.write("Transaction receipt mined:")
+    st.write(dict(receipt))
+    st.write(
+        "You can view the pinned metadata file with the following IPFS Gateway Link"
+    )
+    st.markdown(
+        f"[Hotel Reservation IPFS Gateway Link](https://ipfs.io/ipfs/{hotel_reservation_ipfs_hash})"
+    )
+st.markdown("---")
 
 
 # F- Updated Price for Hotel Reservation Token/NFT
-
+"""
 st.markdown("## Current Price of Tokenized IDs")
 if st.checkbox(
     "Do you want to see the current market value of your Tokenized IDs at this time"
@@ -269,3 +270,4 @@ if st.checkbox(
                 )
         else:
             st.write("This reservation token ID has no new pricing")
+"""
