@@ -1,4 +1,7 @@
+
+################################################################################
 # Imports
+from lib2to3.pgen2 import token
 import os
 import csv
 import pandas as pd
@@ -15,15 +18,21 @@ w3_wallet = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545'))
 
 from pinata import pin_file_to_ipfs, pin_json_to_ipfs, convert_data_to_json
 
+from functions import get_location, get_hotels
+
 load_dotenv()
 
-# A-  Create an instance of web3.py for communicationn to the Blockchain smart contract
+# Create an instance of web3.py for communicationn to the Blockchain smart contract
 w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
 
+## Load the smart contract from remix
+
+# Below Cache does not work on my machine (Tao Chen), you can uncomment it if it works for you
+# @st.cache(allow_output_mutation=True)
 def load_contract():
 
     # Load the contract ABI
-    with open(Path("./contracts/compiled/hotel_reservation_registry_abi.json")) as f:
+    with open(Path("./smart_Contract_and_Token/contracts/compiled/hotel_reservation_registry_abi.json")) as f:
         contract_abi = json.load(f)
 
     # Set the contract address (this is the address of the deployed contract)
@@ -37,7 +46,7 @@ def load_contract():
 
 contract = load_contract()
 
-# C- Helper functions to pin files and json to Pinata
+# Helper functions to pin files and json to Pinata
 
 
 def pin_hotel_reservation(hotel_name, hotel_confirmation_file):
@@ -66,6 +75,7 @@ from crypto_wallet import generate_account, get_balance, send_transaction
 
 ################################################################################
 
+## Below are database stored with fake/stock hotel infor & images for website display purpose (not usefule real codes)
 hotel_database = {
     "1 Hotel Toronto": ["1 Hotel Toronto", "0x05d38543486F918D1d0fFB73E074e90445dD9E5D", "4.3", .20, "Images/1 Hotel Toronto.jpeg"],
     "The Omni King Edward Hotel": ["The Omni King Edward Hotel", "0x2422858F9C4480c2724A309D58Ffd7Ac8bF65396", "5.0", .33, "Images/The Omni King Edward Hotel.jpeg"],
@@ -100,14 +110,24 @@ st.text(" \n")
 
 st.image(list(hotel_database.values())[0][4], width=400)
 
-tokens_on_secondary_market_list = []
-csv_path = Path('hotels_on_secondary_market_list.csv')
+
+## hotels_on_sedondary_market_list = []
 
 
-hotels_on_secondary_market_df = pd.read_csv(csv_path)
-hotels_on_secondary_market_df.columns = ['Hotel Name', 'Check In Date', 'Check Out Date', 'Confirmation Code', 'Purchase Price']
-hotels_on_secondary_market_df = hotels_on_secondary_market_df.set_index('Hotel Name')
-st.dataframe(hotels_on_secondary_market_df)
+with open('hotels_on_sedondary_market_list.csv', 'r') as f:
+    file = csv.reader(f)
+    hotels_on_sedondary_market_list = list(file)
+    df_hotels_on_sedondary_market_list = pd.DataFrame(hotels_on_sedondary_market_list)
+    df_hotels_on_sedondary_market_list.columns = ['hotel name','start date','end date','confimation','purchase price (Usd)','price listed (Eth)','token ID','seller address']
+    ## to set "token ID" column to be index column so that later it can be used to look up other values
+    df_hotels_on_sedondary_market_list_indexed = df_hotels_on_sedondary_market_list.set_index('token ID')
+st.write("hotels_on_sedondary_market_list",df_hotels_on_sedondary_market_list)
+## st.write("df_hotels_on_sedondary_market_list_indexed",df_hotels_on_sedondary_market_list_indexed)
+
+
+tokens_on_secondary_market_list = list(df_hotels_on_sedondary_market_list['token ID'])
+## st.write("tokens_on_secondary_market_list",tokens_on_secondary_market_list)
+
 
 ################################################################################
 # Streamlit Sidebar Code - Start
@@ -150,19 +170,35 @@ st.sidebar.write("End Date: ",booking_info_listed[2])
 ## st.sidebar.write("Confirmation Note: ",booking_info_listed[3])
 st.sidebar.write("Price purchased: ",booking_info_listed[4])
 
+price_list_for_sale = st.sidebar.number_input("price listed for sale")
+st.sidebar.write("price_list_for_sale: ",price_list_for_sale)
 
+# Identify the seller Ethereum Address
+#seller_address = "0x05d38543486F918D1d0fFB73E074e90445dD9E5D"
+seller_address = st.sidebar.text_input("Input seller Address")
+st.sidebar.write("seller_address", seller_address)
 
+## below part enable seller to add their token to secondary market database
 if st.sidebar.button("List token on Sale"):
     st.sidebar.write("token_id_listed",token_id_listed)
-    
-    tokens_on_secondary_market_list.append(token_id_listed)
-    ## 
+    st.sidebar.write("booking_info_listed",booking_info_listed)
+    ## add other info to booking info like: listed price, token id, seller's address to receive proceeds from the sale
+    booking_info_listed.append(price_list_for_sale)
+    booking_info_listed.append(token_id_listed)
+    booking_info_listed.append(seller_address)
+    ## hotel_listed_info = hotel_listed_info.append(account.address)
+
+
+    tokens_on_secondary_market_list.append(token_id_listed) 
 
     hotels_on_sedondary_market_list.append(booking_info_listed)
-    st.write("hotels_on_sedondary_market_list",hotels_on_sedondary_market_list)
+
+
+    ## st.write("hotels_on_sedondary_market_list",hotels_on_sedondary_market_list)
 
     df = pd.DataFrame(hotels_on_sedondary_market_list)
-    df.to_csv('hotels_on_sedondary_market_list.csv', index=False)
+
+    df.to_csv('hotels_on_sedondary_market_list.csv', index = False, header= None)
 
 
 
@@ -174,64 +210,88 @@ if st.sidebar.button("List token on Sale"):
 
 
 ##########################################
+# BUY
 # Create a select box to chose hotel
 st.sidebar.markdown("## *********************************")
 st.sidebar.markdown("## BUY")
-hotel = st.sidebar.selectbox('Buy Hotel shares', hotels)
+
+
+tokens = contract.functions.totalSupply().call()
+token_id_listed = st.sidebar.selectbox("Choose a token to buy", list(range(tokens)))
+
+## st.sidebar.text(booking_info_listed)
+# st.sidebar.write("Hotel Name: ", booking_info_listed[0])
+#st.sidebar.write("Start Date: ",booking_info_listed[1])
+#st.sidebar.write("End Date: ",booking_info_listed[2])
+## st.sidebar.write("Confirmation Note: ",booking_info_listed[3])
+#st.sidebar.write("Price purchased: ",booking_info_listed[4])
 
 # Create a input field to record the number of days the hotel worked
-hours = st.sidebar.number_input("Number of days")
+## hours = st.sidebar.number_input("Number of days")
 
-st.sidebar.markdown("## Hotel Name, Daily Rate, and Ethereum Address")
+## st.sidebar.markdown("## Hotel Name, Daily Rate, and Ethereum Address")
+st.sidebar.write("Token selected to buy ", token_id_listed)
 
-# Identify the hotel
-candidate = hotel_database[hotel][0]
+seller_address = df_hotels_on_sedondary_market_list_indexed.loc[str(token_id_listed),'seller address']
+st.sidebar.write("seller_address", seller_address)
 
-# Write the Fintech Finder candidate's name to the sidebar
-st.sidebar.write("Hotel name: ",candidate)
 
-# Identify the FinTech Finder candidate's Daily rate
-hourly_rate = hotel_database[hotel][3]
+buyer_address = account.address
+st.sidebar.write("buyer_address", buyer_address)
 
-# Write the inTech Finder candidate's Daily rate to the sidebar
-st.sidebar.write("Daily price: ",hourly_rate)
-
-# Identify the FinTech Finder candidate's Ethereum Address
-candidate_address = hotel_database[hotel][1]
-
-# Write the inTech Finder candidate's Ethereum Address to the sidebar
-st.sidebar.write("Sell account address: ",candidate_address)
-
-st.sidebar.markdown("seller's Ethereum Balance")
+st.sidebar.markdown("buyer's Ethereum Balance")
 
 # Write the inTech Finder candidate's Ethereum balance to the sidebar
-st.sidebar.write(get_balance(w3_wallet,candidate_address))
+st.sidebar.write(get_balance(w3_wallet,account.address)) 
 
-# Write the Fintech Finder candidate's name to the sidebar
+
+
+## st.sidebar.markdown("buyer's Ethereum Balance")
+
+# Write the inTech Finder candidate's Ethereum balance to the sidebar
+## st.sidebar.write(get_balance(w3_wallet,buyer_address)) 
+
+# Write the inTech Finder candidate's Daily rate to the sidebar
+price_to_pay_seller = st.sidebar.number_input("price_to_pay_seller")
+st.sidebar.write("price_to_pay_seller: ",price_to_pay_seller)
+
 
 st.sidebar.markdown("## Total Proceeds (ether) to be paid")
 
-################################################################################
+st.sidebar.write(price_to_pay_seller)
 
 
 ##########################################
 
-wage = hotel_database[hotel][3] * hours
+if st.sidebar.button("Pay seller & Transfer NFT Ownership"):
+    # Transfer NYT
+    contract.functions.transferFrom(seller_address,buyer_address,token_id_listed).transact({"from": seller_address, "gas": 3000000})
+    st.sidebar.write("#### Just transfered ownership of token ID: ",token_id_listed)
 
-# @TODO
-# Write the `wage` calculation to the Streamlit sidebar
-# YOUR CODE HERE
-st.sidebar.write(wage)
+    # make payament to seller
+    ##transaction_hash = send_transaction(w3_wallet,buyer_address,seller_address,price_to_pay_seller)
+    transaction_hash = send_transaction(w3_wallet,account,seller_address,price_to_pay_seller)
 
 
-##########################################
+    # Markdown for the transaction hash
 
+
+    st.sidebar.markdown("#### Validated Transaction Hash")
+
+    # Write the returned transaction hash to the screen
+    st.sidebar.write(transaction_hash)
+
+    # Celebrate your successful payment
+    st.balloons()
 
 ## Transfer NFT ownership
 
 if st.sidebar.button("Transfer NFT Ownership"):
 
-    contract.functions.transferFrom("0x366FCA5CDFbf9AfA7568C93F6D5d9BD4274Afa36","0x05d38543486F918D1d0fFB73E074e90445dD9E5D",4).transact({"from": "0x366FCA5CDFbf9AfA7568C93F6D5d9BD4274Afa36", "gas": 3000000})
+    #contract.functions.transferFrom("0x366FCA5CDFbf9AfA7568C93F6D5d9BD4274Afa36","0x05d38543486F918D1d0fFB73E074e90445dD9E5D",token_id_listed).transact({"from": "0x366FCA5CDFbf9AfA7568C93F6D5d9BD4274Afa36", "gas": 3000000})
+    contract.functions.transferFrom(seller_address,buyer_address,token_id_listed).transact({"from": seller_address, "gas": 3000000})
+
+    st.sidebar.write("#### Just transfered ownership of token ID: ",token_id_listed)
 
 
     # Celebrate your successful payment
@@ -239,14 +299,9 @@ if st.sidebar.button("Transfer NFT Ownership"):
 
 if st.sidebar.button("Send Payment"):
 
-    # @TODO
-    # Call the `send_transaction` function and pass it 3 parameters:
-    # Your `account`, the `candidate_address`, and the `wage` as parameters
-    # Save the returned transaction hash as a variable named `transaction_hash`
-    # YOUR CODE HERE
-    ## Copiolet missed w3 argument from the function call
-    transaction_hash = send_transaction(w3_wallet,account,candidate_address,wage)
 
+    ## transaction_hash = send_transaction(w3_wallet,"0x366FCA5CDFbf9AfA7568C93F6D5d9BD4274Afa36","0x05d38543486F918D1d0fFB73E074e90445dD9E5D",price_to_pay_seller)
+    transaction_hash = send_transaction(w3_wallet,account,seller_address,price_to_pay_seller)
     # Markdown for the transaction hash
     st.sidebar.markdown("#### Validated Transaction Hash")
 
@@ -258,7 +313,7 @@ if st.sidebar.button("Send Payment"):
 
 # The function that starts the Streamlit application
 # Writes FinTech Finder candidates to the Streamlit page
-get_hotel(w3_wallet)
+## get_hotel(w3_wallet)
 
 ################################################################################
 
