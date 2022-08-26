@@ -1,25 +1,21 @@
+# Import required libraries
 import os
 import json
 from web3 import Web3
 from pathlib import Path
 from dotenv import load_dotenv
 import streamlit as st
-from PIL import Image
 import time
 import pandas as pd
-import requests
 
-from pinata import pin_file_to_ipfs, pin_json_to_ipfs, convert_data_to_json
-
+# Import helper and pinata functions
+from pinata import pin_json_to_ipfs, convert_data_to_json
 from functions import get_location, get_hotels
 
 load_dotenv()
 
-# A-  Create an instance of web3.py for communication to the Blockchain smart contract
+# Create instance of web3.py for communication to the Blockchain smart contract
 w3 = Web3(Web3.HTTPProvider(os.getenv("WEB3_PROVIDER_URI")))
-
-
-# B- loading the saved contract data (ABI file) and smart contract address that deployed the contract  / Needed for the front-end interaction with the back-end (Using Web3 to connect to the contract)
 
 
 @st.cache(allow_output_mutation=True)
@@ -40,13 +36,10 @@ def load_contract():
 
 contract = load_contract()
 
-# C- Helper functions to pin files and json to Pinata
+# Helper functions to pin files and json to Pinata
 
 
 def pin_hotel_reservation(hotel_name):
-    # Pin the file to IPFS with Pinata
-    ## ipfs_file_hash = pin_file_to_ipfs(hotel_confirmation_file.getvalue())
-
     # Build a token metadata file for the Hotel Reservation
     token_json = {"name": hotel_name}
     json_data = convert_data_to_json(token_json)
@@ -63,9 +56,7 @@ def pin_historical_price_report(report_content):
     return report_ipfs_hash
 
 
-# Ca- Function to display background image from a URL for frontend User friendly visualization
-
-
+# Function to display background image from a URL for frontend User friendly visualization
 def add_bg_from_url():
 
     st.markdown(
@@ -82,34 +73,34 @@ def add_bg_from_url():
         unsafe_allow_html=True,
     )
 
+add_bg_from_url()
 
-## add_bg_from_url()
 
-# D-  Minting/Tokenizing the Hotel Reservations
-
+### SECTION TO SET RESERVATION DETAILS ### 
 st.title("Hotel Reservation NFT System")
 
 # Create blank dataframes for Streamlit
 hotel_price_df = pd.DataFrame()
 selectable_hotel_dict = {}
-hotel_price_df = pd.DataFrame(columns=['Hotel Name', 'Average Price', 'Total Price'])
+d = {'Hotel Name': ['name'], 'Average Price': [0], 'Total Price': [0]}
+hotel_price_df = pd.DataFrame(data=d, columns=['Hotel Name', 'Average Price', 'Total Price'])
 
 # Room input details
-city = st.text_input('Which city would you like to search?')
+city = st.text_input('Which city would you like to search?')                    # Set city variable
 col1top, col2top = st.columns(2)
 with col1top:
-    checkin_date = st.date_input('Check-In')
+    checkin_date = st.date_input('Check-In')                                    # Set check out variable
 with col2top:
-    checkout_date = st.date_input('Check-Out')
+    checkout_date = st.date_input('Check-Out')                                  # Set check out variable
 
 col1bottom, col2bottom = st.columns(2)
 with col1bottom:
-    adults_number = st.number_input('Number of Adults', min_value = 1, step=1)
+    adults_number = st.number_input('Number of Adults', min_value = 1, step=1)  # Set number of adults variable
 with col2bottom:
-    room_number = st.number_input('Number of Rooms', min_value = 1, step=1)
+    room_number = st.number_input('Number of Rooms', min_value = 1, step=1)     # Set number of rooms variable
 
 
-# Format the values
+# Format the values for input into API
 adults_number = str(adults_number)
 room_number = str(room_number)
 checkin_date = str(checkin_date)
@@ -128,9 +119,7 @@ if st.checkbox('Search'):
 
 # Checkbox to display the dataframe
 if st.checkbox('Display Dataframe'):
-    st.text('List Ordered by Popularity')
     hotel_data = hotel_response.json()
-
     # Create empty lists for json values to be populated in
     hotel_list = []
     total_price_list = []
@@ -159,18 +148,19 @@ if st.checkbox('Display Dataframe'):
 chosen_hotel = st.selectbox('Select a Hotel', selectable_hotel_dict, format_func = lambda x: selectable_hotel_dict.get(x))
 chosen_average_price = hotel_price_df.loc[chosen_hotel , 'Average Price']
 chosen_total_price = hotel_price_df.loc[chosen_hotel , 'Total Price']
-
+st.markdown('_List Ordered by Popularity_')
 accounts = w3.eth.accounts
-## if st.checkbox("Do you want to Tokenize your Reservation at this time"):
-st.write("Input an account to get started")
+
+### SECTION TO INPUT WALLET ADDRESS AND FINALIZE BOOKING ###
+st.write("### Input an Account to Get Started")
 address = st.text_input("Input Account Address")
 st.markdown("---")
 
 st.markdown("## Tokenize Hotel Reservation")
-hotel_name = st.text(chosen_hotel)
-hotel_room_value = st.text(chosen_total_price)
+hotel_name = st.markdown(f'### {chosen_hotel}')
+hotel_room_value = st.markdown(f'### ${chosen_total_price} USD')
 hotel_confirmation = st.text_input("Enter the reservation confirmation")
-## file = st.file_uploader("Upload Confirmation Receipt")
+
 if st.button("Tokenize Hotel Reservation"):
     # Use the `pin_hotel_reservation` helper function to pin the file to IPFS
     hotel_reservation_ipfs_hash = pin_hotel_reservation(chosen_hotel)
@@ -201,7 +191,7 @@ st.markdown("---")
 
 
 # F- Updated Price for Hotel Reservation Token/NFT
-"""
+
 st.markdown("## Current Price of Tokenized IDs")
 if st.checkbox(
     "Do you want to see the current market value of your Tokenized IDs at this time"
@@ -230,44 +220,3 @@ if st.checkbox(
         receipt = w3.eth.waitForTransactionReceipt(tx_hash)
         st.write(receipt)
     st.markdown("---")
-
-    # G- Get Historical Price Report
-
-    st.markdown("## Get the Historical Price Log")
-    historical_token_id = st.selectbox("Reservation Token ID", list(range(tokens)))
-    if st.button("Get Price Log"):
-        price_filter = contract.events.Price.createFilter(
-            fromBlock="0x0", argument_filters={"token_id": historical_token_id}
-        )
-        reports = price_filter.get_all_entries()
-        if reports:
-            for report in reports:
-                report_dictionary = dict(report)
-                st.markdown("### Price Report Event Log")
-                st.write(report_dictionary)
-                st.markdown("### Pinata IPFS Report URI")
-                report_uri = report_dictionary["args"]["reportURI"]
-                report_ipfs_hash = report_uri[7:]
-                st.markdown(
-                    f"The report is located at the following URI: " f"{report_uri}"
-                )
-                st.write(
-                    "You can also view the report URI with the following ipfs gateway link"
-                )
-                st.markdown(
-                    f"[IPFS Gateway Link](https://ipfs.io/ipfs/{report_ipfs_hash})"
-                )
-                st.markdown("### Price Log Details")
-                st.write(
-                    pd.DataFrame(
-                        [
-                            str(report_dictionary["args"]["token_id"]),
-                            str(report_dictionary["args"]["hotelRoomValue"]),
-                            report_dictionary["args"]["reportURI"],
-                        ],
-                        index=["token_id", "hotelRoomValue", "reportURI"],
-                    )
-                )
-        else:
-            st.write("This reservation token ID has no new pricing")
-"""
