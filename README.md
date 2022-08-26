@@ -100,7 +100,14 @@ Once the platform goes live, we have code built in to burn any tokens that have 
 
 ## Development Pipeline
 
-Upon succesful deployment of the Hotel.io platform, we aim to create a NFT / Smart Contract system to not only allow trading of hotel rooms within a secondary market, but also exapnding into adjacent markets, which include secondary marketplaces for the following:
+Near-term updates can be made to the Hotel.io platform that include:
+
+1) Stablecoin integration: tieing the secondary market to a stablecoin to hedge hotel valuations against crypto volatility
+2) Secondary market enhancements: Creating bid-ask functionality and pulling real-time hotel price data to dynamically update reservations
+3) Machine learning: optimizing search results based on historic interactions
+4) UI / UX Updates: Migrating away from the Streamlit platform to enhance the user platform
+
+Upon succesfully updating the Hotel.io platform, we aim to create a NFT / Smart Contract system to not only allow trading of hotel rooms within a secondary market, but also exapnding into adjacent markets, which include secondary marketplaces for the following:
 
 1) Airfaires 
 2) Car rentals
