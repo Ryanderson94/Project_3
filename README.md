@@ -90,10 +90,13 @@ Once the platform goes live, we have code built in to burn any tokens that have 
 ##### Back-End: Inputting Room Criteria on the Secondary Market
 ![image](https://user-images.githubusercontent.com/24529411/186979198-966a0f99-d91d-4174-9681-b64ed32bd21c.png)
 
-##### Front-End: CSV File of Available Rooms on Secondary Market
-![](https://files.slack.com/files-pri/T0346E0RFPH-F040P9QAM5W/image.png)
+##### Front-End: Buy / Sell Inputs on Secondary Market
+![image](https://user-images.githubusercontent.com/24529411/186999088-bd9ca37f-c5ce-43f7-8dd5-d3de65742955.png) ![image](https://user-images.githubusercontent.com/24529411/186999118-a06a5058-aa9e-464c-8edd-453f27032cd7.png)
 
-![ ](https://files.slack.com/files-pri/T0346E0RFPH-F040P9RQMCY/image.png) ![](https://files.slack.com/files-pri/T0346E0RFPH-F040P9SFFEC/image.png)
+
+
+##### Front-End: CSV File of Available Rooms on Secondary Market
+![image](https://user-images.githubusercontent.com/24529411/186998973-a71a3c8e-a61e-405a-b1b8-df4a7303c4bf.png)
 
 ## Development Pipeline
 
