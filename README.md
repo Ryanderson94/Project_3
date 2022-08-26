@@ -53,7 +53,7 @@ On the back-end, a RapidAPI call is made to pull real-time hotel information wit
 
 Upon choosing an adventure destination, the Hotel.io application begins the process of minting an NFT reflecting the details of your booking on the back-end. The process is launched by a customer inputting their wallet account address to start the call to the deployed Hotelbooking_NFT smart contract which utilizes ERC721Full library for its industry standards for Non Fungible Token functions.
 
-Key variable include:
+Key variables include:
 
 * Hotel name
 * Check-in date
