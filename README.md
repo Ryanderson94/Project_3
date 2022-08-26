@@ -47,7 +47,7 @@ On the back-end, a RapidAPI call is made to pull real-time hotel information wit
 ![image](https://user-images.githubusercontent.com/24529411/186980161-e3338eef-6f19-4892-9626-1c839f1a9522.png)
 
 ##### *Front-End: Option criteria when booking a reservation*
-INSERT IMAGE
+![image](https://user-images.githubusercontent.com/24529411/186999401-9cdaf739-dde3-400c-b0cd-6b68ba97adcb.png)
 
 
 ### 2. Creating a Smart Contract: Minting an the Hotel Room Purchase into an NFT
@@ -71,10 +71,10 @@ Finally after the call to the smart contract has been executed and included on t
 [Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
 ##### *Back-End: Tokenizing the reservation*
-![](https://files.slack.com/files-pri/T0346E0RFPH-F03UZ20AWK1/image.png)
+![image](https://user-images.githubusercontent.com/24529411/186999298-acc48300-193f-4b7f-b09b-66aa777aeea7.png)
 
 ##### *Front-End: Confirmation Recipt of Hotel Reservation (NFT / Tokenization)*
-INSERT IMAGE
+![image](https://user-images.githubusercontent.com/24529411/186999472-b7543c34-3e7a-4fba-8705-76562d5f183c.png)
 
 ### 3. Secondary Market: Relisting a Purchased Hotel Room
 
