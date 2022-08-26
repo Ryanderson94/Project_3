@@ -41,7 +41,7 @@ When it comes to the booking interface, we have not re-invented the wheel. Lever
 On the back-end, a RapidAPI call is made to pull real-time hotel information within the parameters of a screening, which include: locations, prices, dates, popularity, hotel operators, and more. the platform loads the saved contract data (ABI file) and smart contract address that deployed the contract. This allows for the back-end to interact with the front-end application, which leverages an instance of web3.py for communication to the Blockchain smart contract.
 
 **Please refer to the link and images for furhter detail:**
-[Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py) (Rows 18 - 83)
+[Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
 ##### *Back-end: Calling the data through RapidAPI (Booking.com API)*
 ![image](https://user-images.githubusercontent.com/24529411/186980161-e3338eef-6f19-4892-9626-1c839f1a9522.png)
@@ -68,13 +68,10 @@ With this information the deployed contract will insert them into a dictionary c
 Finally after the call to the smart contract has been executed and included on the Blockchain the minted TokenID, the transaction receipt mined and a hotel reservation IPFS link to your tokenized reservation NFT is provided to the customer for their future reference. With a created NFT for their reservation they will have the capability of listing it on our secondary market. 
 
 **Please refer to the link and images for furhter detail:**
-[Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py) (Rows 86 - 273)
-
-##### *Back-End: Inputing room criteria*
-![image](https://user-images.githubusercontent.com/24529411/186979790-fff7295b-746e-4f60-9320-df2b6fda7d11.png)
+[Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
 ##### *Back-End: Tokenizing the reservation*
-![image](https://user-images.githubusercontent.com/24529411/186979992-89be7838-6722-46b9-b45d-ed9f869dcf37.png)
+![](https://files.slack.com/files-pri/T0346E0RFPH-F03UZ20AWK1/image.png)
 
 ##### *Front-End: Confirmation Recipt of Hotel Reservation (NFT / Tokenization)*
 INSERT IMAGE
@@ -85,6 +82,8 @@ While we attempted to design a way to disrupt the hotel market, as a byproduct w
 
 Clients can list or delist their bookings based off their desires, while simultaneously being able to gauge the current market for their asset and determine the best path forward. Once a client has listed its NFT on the secondary market, the token is then pulled into a CSV for potential purchases to view in a readable format.
 
+Once the platform goes live, we have code built in to burn any tokens that have expired, meaning they will no longer exist because the current date is past the existing reservation date. This parameter is embedded in each of the smart contracts.
+
 **Please refer to the link and images for furhter detail:**
 [Secondary Market App](https://github.com/Ryanderson94/Project_3/blob/main/secondary_market.py)
 
@@ -92,7 +91,9 @@ Clients can list or delist their bookings based off their desires, while simulta
 ![image](https://user-images.githubusercontent.com/24529411/186979198-966a0f99-d91d-4174-9681-b64ed32bd21c.png)
 
 ##### Front-End: CSV File of Available Rooms on Secondary Market
-INSERT IMAGE
+![](https://files.slack.com/files-pri/T0346E0RFPH-F040P9QAM5W/image.png)
+
+![ ](https://files.slack.com/files-pri/T0346E0RFPH-F040P9RQMCY/image.png) ![](https://files.slack.com/files-pri/T0346E0RFPH-F040P9SFFEC/image.png)
 
 ## Development Pipeline
 
