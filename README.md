@@ -53,6 +53,7 @@ On the back-end, a RapidAPI call is made to pull real-time hotel information wit
 [Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
 ##### <ins>*Front-End: Option criteria when booking a reservation*</ins>
+
 ![image](https://user-images.githubusercontent.com/24529411/187001769-b8e68dd2-e8ee-46c7-be53-28f4fd84d726.png)
 
 ### 2. Creating a Smart Contract: Minting an the Hotel Room Purchase into an NFT
