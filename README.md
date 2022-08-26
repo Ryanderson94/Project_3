@@ -117,7 +117,7 @@ There is a tremendous market opportunity and we believe that demand will continu
 
 Please refer to the timeline below for an illustrative timeline of our product roadmap:
 
-<ins>**Product Roadmap**</ins>
+<ins>Product Roadmap</ins>
 
 ![image](https://user-images.githubusercontent.com/24529411/187002465-1cdfbd3f-8242-40d0-925b-92c8f91fbe3c.png)
 
