@@ -206,34 +206,3 @@ if st.button("Finalize Hotel Reservation"):
         f"[Hotel Reservation IPFS Gateway Link](https://ipfs.io/ipfs/{hotel_reservation_ipfs_hash})"
     )
 st.markdown("---")
-
-
-# Updated Price for Hotel Reservation Token/NFT
-st.markdown("## Current Price of Tokenized IDs")
-if st.checkbox(
-    "Do you want to see the current market value of your Tokenized IDs at this time"
-):
-    tokens = contract.functions.totalSupply().call()
-    token_id = st.selectbox("Choose a Reservation Token ID", list(range(tokens)))
-    current_price = contract.functions.roomconfirmation(token_id).call()[-1]
-    st.text(f" Current Price on BlockChain $ {current_price}")
-    # .call("hotelRoomValue"))
-    updated_room_price = st.text_input(
-        "API Call for updated room price"
-    )  # **Will update functionality - An API call will be made to get updated Price**
-    updated_price_report = f"Updated Price on ?today's date: {updated_room_price} "  # **Need to update code to put the current date when ever function is called**
-    if st.button("Update Price on BlockChain"):
-
-        # Use Pinata to pin an updated price report for the report URI
-        updated_price_report_ipfs_hash = pin_historical_price_report(
-            updated_price_report
-        )
-        report_uri = f"ipfs://{updated_price_report_ipfs_hash}"
-
-        # Use the token_id and the report_uri to record the updated price of token/nft
-        tx_hash = contract.functions.updatedPriceOfReservation(
-            token_id, int(updated_room_price), report_uri
-        ).transact({"from": w3.eth.accounts[0]})
-        receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-        st.write(receipt)
-    st.markdown("---")
