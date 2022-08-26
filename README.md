@@ -76,11 +76,11 @@ Finally after the call to the smart contract has been executed and included on t
 **Please refer to the link and images for furhter detail:**
 [Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
-##### <ins>*Back-End: Tokenizing the reservation*</ins>
-![image](https://user-images.githubusercontent.com/24529411/186999298-acc48300-193f-4b7f-b09b-66aa777aeea7.png)
-
 ##### <ins>*Front-End: Confirmation Recipt of Hotel Reservation (NFT / Tokenization)*</ins>
 ![image](https://user-images.githubusercontent.com/24529411/186999472-b7543c34-3e7a-4fba-8705-76562d5f183c.png)
+
+##### <ins>*Back-End: Tokenizing the reservation*</ins>
+![image](https://user-images.githubusercontent.com/24529411/186999298-acc48300-193f-4b7f-b09b-66aa777aeea7.png)
 
 ### 3. Secondary Market: Relisting a Purchased Hotel Room
 
