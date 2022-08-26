@@ -122,7 +122,6 @@ Please refer to the timeline below for an illustrative timeline of our product r
 
 ![image](https://user-images.githubusercontent.com/24529411/187002465-1cdfbd3f-8242-40d0-925b-92c8f91fbe3c.png)
 
-
 ## Concluding Thoughts
 
 We have seamlessly integrated and connected our disparate sections into one streamlined application for our user base’s ease of use. Client inputs in initial sections are pulled forward to limit hassle on the client side. From initial booking to tokenization to potential listing and purchasing on the secondary market, everything within this tool is designed to make the process as easy as possible, while at the same time placing countless options at the user’s fingertips to accomplish whatever they desire. Want to book a room? Purchase directly from the hotel and tokenize one or shop our secondary market and find one you feel is a better deal. Want to know how your prior booking price reflects what that room is worth today? We have you covered, all within a few clicks of our streamlit application.
