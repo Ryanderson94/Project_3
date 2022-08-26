@@ -6,7 +6,7 @@ Did you know that almost 20% of hotels rooms booked online are cancelled before 
 
 <ins>**Introducing Hotel.io: a platform that addresses last minute cancellations and creates a win-win solution for prospecitve guests and hotel operators.**</ins>
 
-<ins>**Solution Overview**</ins>
+<ins>*Solution Overview*</ins>
 ![image](https://user-images.githubusercontent.com/24529411/187001353-7e50df72-bada-4e8e-aaf3-552a5d418646.png)
 
 Hotel.io solves this problem by creating and implementing the following features:
@@ -92,10 +92,10 @@ Once the platform goes live, we have code built in to burn any tokens that have 
 **Please refer to the link and images for furhter detail:**
 [Secondary Market App](https://github.com/Ryanderson94/Project_3/blob/main/secondary_market.py)
 
-##### <ins>Front-End: Buy / Sell Inputs on Secondary Market</ins>
+##### <ins>*Front-End: Buy / Sell Inputs on Secondary Market*</ins>
 ![image](https://user-images.githubusercontent.com/24529411/186999088-bd9ca37f-c5ce-43f7-8dd5-d3de65742955.png) ![image](https://user-images.githubusercontent.com/24529411/186999118-a06a5058-aa9e-464c-8edd-453f27032cd7.png)
 
-##### <ins>Front-End: CSV File of Available Rooms on Secondary Market</ins>
+##### <ins>*Front-End: CSV File of Available Rooms on Secondary Market*</ins>
 ![image](https://user-images.githubusercontent.com/24529411/186998973-a71a3c8e-a61e-405a-b1b8-df4a7303c4bf.png)
 
 ## Development Pipeline
@@ -117,7 +117,7 @@ There is a tremendous market opportunity and we believe that demand will continu
 
 Please refer to the timeline below for an illustrative timeline of our product roadmap:
 
-<ins>Product Roadmap</ins>
+<ins>*Product Roadmap*</ins>
 
 ![image](https://user-images.githubusercontent.com/24529411/187002465-1cdfbd3f-8242-40d0-925b-92c8f91fbe3c.png)
 
