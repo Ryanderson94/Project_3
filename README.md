@@ -24,7 +24,7 @@ An integration with Booking.com using the rapidAPI in order to obtain real-time 
 ## Technologies
 
 The Hotel.io marketplace utilizes Python (v 3.9.7) and the following libraries:
-1. os 2. csv 3. pandas as pd 4. json 5. from pathlib import Path 6. streamlit as st 7. from dataclasses import dataclass 8. from typing import Any, List 9. from web3 import Web3 10. from dotence import load_dotenv 11. from pinata import pin_file_to_ipfs, pin_json_to_ipfs, convert_data_to_json 12. from PIL import Image 13. time 14. requests 15. from bip44 import Wallet 16. from web3 import Account 17. from web3 import middleware 18. from web3.gas_strategies.time_based import medium_gas_price_strategy 19. from functions import get_location, get_hotels 20. RapidAPI
+1. os 2. csv 3. pandas as pd 4. json 5. from pathlib import Path 6. streamlit as st 7. from dataclasses import dataclass 8. from typing import Any, List 9. from web3 import Web3 10. from dotence import load_dotenv 11. from pinata import pin_file_to_ipfs, pin_json_to_ipfs, convert_data_to_json 12. from PIL import Image 13. time 14. requests 15. from bip44 import Wallet 16. from web3 import Account 17. from web3 import middleware 18. from web3.gas_strategies.time_based import medium_gas_price_strategy 19. from functions import get_location, get_hotels 20. Login to the RapidAPI and a free basic subscription to the Booking.com
 
 ## Installation Guide
 
