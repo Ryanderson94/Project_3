@@ -52,7 +52,7 @@ On the back-end, a RapidAPI call is made to pull real-time hotel information wit
 **Please refer to the link and images for furhter detail:**
 [Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
-##### *Front-End: Option criteria when booking a reservation*
+##### <ins>*Front-End: Option criteria when booking a reservation*</ins>
 ![image](https://user-images.githubusercontent.com/24529411/187001769-b8e68dd2-e8ee-46c7-be53-28f4fd84d726.png)
 
 ### 2. Creating a Smart Contract: Minting an the Hotel Room Purchase into an NFT
@@ -75,10 +75,10 @@ Finally after the call to the smart contract has been executed and included on t
 **Please refer to the link and images for furhter detail:**
 [Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
-##### *Back-End: Tokenizing the reservation*
+##### <ins>*Back-End: Tokenizing the reservation*</ins>
 ![image](https://user-images.githubusercontent.com/24529411/186999298-acc48300-193f-4b7f-b09b-66aa777aeea7.png)
 
-##### *Front-End: Confirmation Recipt of Hotel Reservation (NFT / Tokenization)*
+##### <ins>*Front-End: Confirmation Recipt of Hotel Reservation (NFT / Tokenization)*</ins>
 ![image](https://user-images.githubusercontent.com/24529411/186999472-b7543c34-3e7a-4fba-8705-76562d5f183c.png)
 
 ### 3. Secondary Market: Relisting a Purchased Hotel Room
@@ -92,10 +92,10 @@ Once the platform goes live, we have code built in to burn any tokens that have 
 **Please refer to the link and images for furhter detail:**
 [Secondary Market App](https://github.com/Ryanderson94/Project_3/blob/main/secondary_market.py)
 
-##### Front-End: Buy / Sell Inputs on Secondary Market
+##### <ins>Front-End: Buy / Sell Inputs on Secondary Market</ins>
 ![image](https://user-images.githubusercontent.com/24529411/186999088-bd9ca37f-c5ce-43f7-8dd5-d3de65742955.png) ![image](https://user-images.githubusercontent.com/24529411/186999118-a06a5058-aa9e-464c-8edd-453f27032cd7.png)
 
-##### Front-End: CSV File of Available Rooms on Secondary Market
+##### <ins>Front-End: CSV File of Available Rooms on Secondary Market</ins>
 ![image](https://user-images.githubusercontent.com/24529411/186998973-a71a3c8e-a61e-405a-b1b8-df4a7303c4bf.png)
 
 ## Development Pipeline
