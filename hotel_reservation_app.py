@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 import streamlit as st
 import time
 import pandas as pd
+import uuid
 
 # Import helper and pinata functions
 from pinata import pin_json_to_ipfs, convert_data_to_json
@@ -80,8 +81,8 @@ add_bg_from_url()
 st.title("Hotel Reservation NFT System")
 
 # Create blank dataframes for Streamlit
-hotel_price_df = pd.DataFrame()
 selectable_hotel_dict = {}
+chosen_total_price = 0
 d = {'Hotel Name': ['name'], 'Average Price': [0], 'Total Price': [0]}
 hotel_price_df = pd.DataFrame(data=d, columns=['Hotel Name', 'Average Price', 'Total Price'])
 
@@ -144,25 +145,42 @@ if st.checkbox('Display Dataframe'):
     hotel_price_df.columns = ['Hotel Name', 'Average Price', 'Total Price']
     hotel_price_df = hotel_price_df.set_index('Hotel Name')
 
+
 # Set chosen values
 chosen_hotel = st.selectbox('Select a Hotel', selectable_hotel_dict, format_func = lambda x: selectable_hotel_dict.get(x))
-chosen_average_price = hotel_price_df.loc[chosen_hotel , 'Average Price']
-chosen_total_price = hotel_price_df.loc[chosen_hotel , 'Total Price']
+if bool(chosen_hotel):
+    chosen_average_price = hotel_price_df.loc[chosen_hotel , 'Average Price']
+    chosen_total_price = hotel_price_df.loc[chosen_hotel , 'Total Price']
 st.markdown('_List Ordered by Popularity_')
+
+
+# Set accounts variable
 accounts = w3.eth.accounts
 
 ### SECTION TO INPUT WALLET ADDRESS AND FINALIZE BOOKING ###
-st.write("### Input an Account to Get Started")
+st.write("### Input an Wallet Address to Continue")
 address = st.text_input("Input Account Address")
 st.markdown("---")
 
-st.markdown("## Tokenize Hotel Reservation")
-hotel_name = st.markdown(f'### {chosen_hotel}')
-hotel_room_value = st.markdown(f'### ${chosen_total_price} USD')
-hotel_confirmation = st.text_input("Enter the reservation confirmation")
 
-if st.button("Tokenize Hotel Reservation"):
-    # Use the `pin_hotel_reservation` helper function to pin the file to IPFS
+# Generate confirmation number
+confirmation_code = uuid.uuid4()
+
+
+st.markdown("## Confirm and Tokenize Hotel Reservation")
+
+
+# Display final room booking details
+if chosen_hotel != None:
+    hotel_name = st.markdown(f'### {chosen_hotel}')
+    hotel_room_value = st.markdown(f'### ${chosen_total_price} USD')
+    st.markdown(f'#### Your confirmation code is: {confirmation_code}')
+
+# hotel_confirmation = st.text_input("Enter the reservation confirmation")
+
+
+# Finalize the hotel room booking
+if st.button("Finalize Hotel Reservation"):
     hotel_reservation_ipfs_hash = pin_hotel_reservation(chosen_hotel)
     hotel_reservation_uri = f"ipfs://{hotel_reservation_ipfs_hash}"
     tx_hash = contract.functions.registerHotelReservation(
@@ -170,7 +188,7 @@ if st.button("Tokenize Hotel Reservation"):
         str(chosen_hotel),
         str(checkin_date),
         str(checkout_date),
-        str(hotel_confirmation),
+        str(confirmation_code),
         int(chosen_total_price),
         hotel_reservation_uri,
     ).transact({"from": address, "gas": 1000000})
@@ -190,8 +208,7 @@ if st.button("Tokenize Hotel Reservation"):
 st.markdown("---")
 
 
-# F- Updated Price for Hotel Reservation Token/NFT
-
+# Updated Price for Hotel Reservation Token/NFT
 st.markdown("## Current Price of Tokenized IDs")
 if st.checkbox(
     "Do you want to see the current market value of your Tokenized IDs at this time"
