@@ -4,11 +4,10 @@
 
 Did you know that almost 20% of hotels rooms booked online are cancelled before the guest arrives? This not only directly impacts the revenue of the hotel, but also leads to poor marketing, since Online Travel Agencies keep track of cancellations drawn by a hotel. The prospective guest is hit with cancellation fees and left dissastified. All in all, in the event of a cancellation there is an apparent lose-lose relationship between prospective guests and hotel operators. We strive to solve this crucial pain point.
 
-**Introducing (drum roll please)...**
+**Solution Overview**
+![image](https://user-images.githubusercontent.com/24529411/187001353-7e50df72-bada-4e8e-aaf3-552a5d418646.png)
 
-![image](https://user-images.githubusercontent.com/24529411/186531759-69331a01-be22-4fdd-a894-f4ec3bdd600f.png)
-
-<ins>**Hotel.io: a platform that addresses last minute cancellations and creates a win-win solution for prospecitve guests and hotel operators.**</ins>
+<ins>**Introducing Hotel.io: a platform that addresses last minute cancellations and creates a win-win solution for prospecitve guests and hotel operators.**</ins>
 
 Hotel.io solves this problem by creating and implementing the following features:
 
@@ -53,12 +52,8 @@ On the back-end, a RapidAPI call is made to pull real-time hotel information wit
 **Please refer to the link and images for furhter detail:**
 [Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
-##### *Back-end: Calling the data through RapidAPI (Booking.com API)*
-![image](https://user-images.githubusercontent.com/24529411/186980161-e3338eef-6f19-4892-9626-1c839f1a9522.png)
-
 ##### *Front-End: Option criteria when booking a reservation*
-![image](https://user-images.githubusercontent.com/24529411/186999401-9cdaf739-dde3-400c-b0cd-6b68ba97adcb.png)
-
+![image](https://user-images.githubusercontent.com/24529411/187001769-b8e68dd2-e8ee-46c7-be53-28f4fd84d726.png)
 
 ### 2. Creating a Smart Contract: Minting an the Hotel Room Purchase into an NFT
 
@@ -97,13 +92,8 @@ Once the platform goes live, we have code built in to burn any tokens that have 
 **Please refer to the link and images for furhter detail:**
 [Secondary Market App](https://github.com/Ryanderson94/Project_3/blob/main/secondary_market.py)
 
-##### Back-End: Inputting Room Criteria on the Secondary Market
-![image](https://user-images.githubusercontent.com/24529411/186979198-966a0f99-d91d-4174-9681-b64ed32bd21c.png)
-
 ##### Front-End: Buy / Sell Inputs on Secondary Market
 ![image](https://user-images.githubusercontent.com/24529411/186999088-bd9ca37f-c5ce-43f7-8dd5-d3de65742955.png) ![image](https://user-images.githubusercontent.com/24529411/186999118-a06a5058-aa9e-464c-8edd-453f27032cd7.png)
-
-
 
 ##### Front-End: CSV File of Available Rooms on Secondary Market
 ![image](https://user-images.githubusercontent.com/24529411/186998973-a71a3c8e-a61e-405a-b1b8-df4a7303c4bf.png)
@@ -116,7 +106,10 @@ Upon succesful deployment of the Hotel.io platform, we aim to create a NFT / Sma
 2) Car rentals
 3) Airbnbs
 
-There is a tremendous market opportunity and we believe that demand will continue to rise in an increasingly virtual and unpredictable environment.
+There is a tremendous market opportunity and we believe that demand will continue to rise in an increasingly virtual and unpredictable environment. Please refer to the timeline below for an illustrative timeline of our product roadmap:
+
+![image](https://user-images.githubusercontent.com/24529411/187000832-ddb1b944-9d86-42b8-98c7-b32d9492bdd0.png)
+
 
 ## Concluding Thoughts
 
