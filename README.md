@@ -113,8 +113,11 @@ Upon succesfully updating the Hotel.io platform, we aim to create a NFT / Smart 
 2) Car rentals
 3) Airbnbs
 
-There is a tremendous market opportunity and we believe that demand will continue to rise in an increasingly virtual and unpredictable environment. Please refer to the timeline below for an illustrative timeline of our product roadmap:
+There is a tremendous market opportunity and we believe that demand will continue to rise in an increasingly virtual and unpredictable environment. 
 
+Please refer to the timeline below for an illustrative timeline of our product roadmap:
+
+<ins>*Product Roadmap*</ins>
 ![image](https://user-images.githubusercontent.com/24529411/187000832-ddb1b944-9d86-42b8-98c7-b32d9492bdd0.png)
 
 
