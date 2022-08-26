@@ -2,9 +2,9 @@
 
 ## Overview & Features
 
-Did you know that almost 20% of hotels rooms booked online are cancelled before the guest arrives? This not only directly impacts the revenue of the hotel, but also leads to poor marketing, since Online Travel Agencies keep track of cancellations drawn by a hotel. The prospective guest is hit with cancellation fees and left dissastified. All in all, in the event of a cancellation there is an apparent lose-lose relationship between prospective guests and hotel operators. We strive to solve this crucial pain point.
+Did you know that almost 20% of hotels rooms booked online are cancelled before the guest arrives? This not only directly impacts the revenue of the hotel, but also leads to poor marketing, since Online Travel Agencies keep track of cancellations drawn by a hotel. The prospective guest is hit with cancellation fees and left dissatisfied. All in all, in the event of a cancellation there is an apparent lose-lose relationship between prospective guests and hotel operators. We strive to solve this crucial pain point.
 
-<ins>**Introducing Hotel.io: a platform that addresses last minute cancellations and creates a win-win solution for prospecitve guests and hotel operators.**</ins>
+<ins>**Introducing Hotel.io: a platform that addresses last minute cancellations and creates a win-win solution for prospective guests and hotel operators.**</ins>
 
 <ins>*Solution Overview*</ins>
 ![image](https://user-images.githubusercontent.com/24529411/187001353-7e50df72-bada-4e8e-aaf3-552a5d418646.png)
@@ -42,7 +42,7 @@ When it comes to the booking interface, we have not re-invented the wheel. Lever
 
 On the back-end, a RapidAPI call is made to pull real-time hotel information within the parameters of a screening, which include: locations, prices, dates, popularity, hotel operators, and more. The platform loads the saved contract data (ABI file) and smart contract address that deployed the contract. This allows for the back-end to interact with the front-end application, which leverages an instance of web3.py for communication to the Blockchain smart contract.
 
-**Please refer to the link and images for furhter detail:**
+**Please refer to the link and images for further detail:**
 [Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
 ##### <ins>*Front-End: Option criteria when booking a reservation*</ins>
@@ -66,10 +66,10 @@ With this information the deployed contract will insert them into a dictionary c
 
 Finally after the call to the smart contract has been executed and included on the Blockchain the minted TokenID, the transaction receipt mined and a hotel reservation IPFS link to your tokenized reservation NFT is provided to the customer for their future reference. With a created NFT for their reservation they will have the capability of listing it on our secondary market.
 
-**Please refer to the link and images for furhter detail:**
+**Please refer to the link and images for further detail:**
 [Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
-##### <ins>*Front-End: Confirmation Recipt of Hotel Reservation (NFT / Tokenization)*</ins>
+##### <ins>*Front-End: Confirmation Receipt of Hotel Reservation (NFT / Tokenization)*</ins>
 ![image](https://user-images.githubusercontent.com/24529411/186999472-b7543c34-3e7a-4fba-8705-76562d5f183c.png)
 
 ##### <ins>*Back-End: Tokenizing the reservation*</ins>
@@ -83,28 +83,28 @@ Clients can list or delist their bookings based off their desires, while simulta
 
 Once the platform goes live, we have code built in to burn any tokens that have expired, meaning they will no longer exist because the current date is past the existing reservation date. This parameter is embedded in each of the smart contracts.
 
-**Please refer to the link and images for furhter detail:**
+**Please refer to the link and images for further detail:**
 [Secondary Market App](https://github.com/Ryanderson94/Project_3/blob/main/secondary_market.py)
 
-##### <ins>*Front-End: Intrepreting the Secondary Market*</ins>
+##### <ins>*Front-End: Interpreting the Secondary Market*</ins>
 ![image](https://user-images.githubusercontent.com/24529411/187003587-09d5b4ea-8936-484d-bacd-22912a095b6d.png)
 
 ## Development Pipeline
 
 Near-term updates can be made to the Hotel.io platform that include:
 
-1) Stablecoin integration: tieing the secondary market to a stablecoin to hedge hotel valuations against crypto volatility
+1) Stablecoin integration: tying the secondary market to a stablecoin to hedge hotel valuations against crypto volatility
 2) Secondary market enhancements: Creating bid-ask functionality and pulling real-time hotel price data to dynamically update reservations
 3) Machine learning: optimizing search results based on historic interactions
 4) UI / UX Updates: Migrating away from the Streamlit platform to enhance the user platform
 
-Upon succesfully updating the Hotel.io platform, we aim to create a NFT / Smart Contract system to not only allow trading of hotel rooms within a secondary market, but also exapnding into adjacent markets, which include secondary marketplaces for the following:
+Upon successfully updating the Hotel.io platform, we aim to create a NFT / Smart Contract system to not only allow trading of hotel rooms within a secondary market, but also expanding into adjacent markets, which include secondary marketplaces for the following:
 
-1) Airfaires 
+1) Airfares 
 2) Car rentals
 3) Airbnbs
 
-There is a tremendous market opportunity and we believe that demand will continue to rise in an increasingly virtual and unpredictable environment. 
+There is a tremendous market opportunity, and we believe that demand will continue to rise in an increasingly virtual and unpredictable environment. 
 
 Please refer to the timeline below for an illustrative timeline of our product roadmap:
 
@@ -114,7 +114,7 @@ Please refer to the timeline below for an illustrative timeline of our product r
 
 ## Concluding Thoughts
 
-We have seamlessly integrated and connected our disparate sections into one streamlined application for our user base’s ease of use. Client inputs in initial sections are pulled forward to limit hassle on the client side. From initial booking to tokenization to potential listing and purchasing on the secondary market, everything within this tool is designed to make the process as easy as possible, while at the same time placing countless options at the user’s fingertips to accomplish whatever they desire. Want to book a room? Purchase directly from the hotel and tokenize one or shop our secondary market and find one you feel is a better deal. Want to know how your prior booking price reflects what that room is worth today? We have you covered, all within a few clicks of our streamlit application.
+We have seamlessly integrated and connected our disparate sections into one streamlined application for our user base’s ease of use. Client inputs in initial sections are pulled forward to limit hassle on the client side. From initial booking to tokenization to potential listing and purchasing on the secondary market, everything within this tool is designed to make the process as easy as possible, while at the same time placing countless options at the user’s fingertips to accomplish whatever they desire. Want to book a room? Purchase directly from the hotel and tokenize one or shop our secondary market and find one you feel is a better deal. Want to know how your prior booking price reflects what that room is worth today? We have you covered, all within a few clicks of our Streamlit application.
 
 ## Contributors
 
