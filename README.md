@@ -32,6 +32,16 @@ Majority of the above libraries should be part of the base applications that wer
 
 [PIP Install Support Web Site](https://packaging.python.org/en/latest/tutorials/installing-packages/#ensure-you-can-run-python-from-the-command-line)
 
+Additionally, in order to run the application, users will need the following:
+
+1) WEB3 Provider URI
+2) Smart Contract Address
+3) Trading Contract Address
+4) Pinata API Key
+5) Pinata Secret API Key
+6) API Key
+7) MNEMONIC Code
+
 ## Application Sections
 
 ### 1. Booking the Hotel: RapidAPI Pull
