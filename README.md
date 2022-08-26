@@ -6,7 +6,7 @@ Did you know that almost 20% of hotels rooms booked online are cancelled before 
 
 <ins>**Introducing Hotel.io: a platform that addresses last minute cancellations and creates a win-win solution for prospecitve guests and hotel operators.**</ins>
 
-**Solution Overview**
+<ins>**Solution Overview**</ins>
 ![image](https://user-images.githubusercontent.com/24529411/187001353-7e50df72-bada-4e8e-aaf3-552a5d418646.png)
 
 Hotel.io solves this problem by creating and implementing the following features:
@@ -117,7 +117,8 @@ There is a tremendous market opportunity and we believe that demand will continu
 
 Please refer to the timeline below for an illustrative timeline of our product roadmap:
 
-<ins>*Product Roadmap*</ins>
+<ins>**Product Roadmap**</ins>
+
 ![image](https://user-images.githubusercontent.com/24529411/187000832-ddb1b944-9d86-42b8-98c7-b32d9492bdd0.png)
 
 
