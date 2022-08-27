@@ -110,7 +110,7 @@ Please refer to the timeline below for an illustrative timeline of our product r
 
 <ins>*Product Roadmap*</ins>
 
-![image](https://user-images.githubusercontent.com/24529411/187002465-1cdfbd3f-8242-40d0-925b-92c8f91fbe3c.png)
+![image](https://user-images.githubusercontent.com/24529411/187032392-8b92d102-f3ca-44a3-a55e-a712db3991a6.png)
 
 ## Concluding Thoughts
 
