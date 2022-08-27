@@ -19,6 +19,8 @@ contract HotelReservationRegistry is ERC721Full {
 
     event Price(uint256 token_id, uint256 hotelRoomValue, string reportURI); // event function to record data as a log entry on the blockchain
 
+    event TerminationOfToken(uint256 token_id, string current_date); // event function to delete Token that has expired per the endDate
+
     function registerHotelReservation(
         // register hotel reservation and returns the newly minted token as a uint256
 
@@ -59,5 +61,15 @@ contract HotelReservationRegistry is ERC721Full {
         emit Price(tokenId, updatedRoomPrice, reportURI); // event triggered by emit keyword
 
         return roomconfirmation[tokenId].hotelRoomValue;
+    }
+
+    function TerminatingToken(uint256 tokenId, string memory current_date)
+        internal
+    {
+        roomconfirmation[tokenId].endDate = current_date;
+
+        emit TerminationOfToken(tokenId, current_date);
+
+        return _burn(ownerOf(tokenId), tokenId);
     }
 }
