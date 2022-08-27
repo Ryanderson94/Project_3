@@ -30,7 +30,7 @@ Majority of the above libraries should be part of the base applications that wer
 
 Additionally, in order to run the application, users will need the following:
 
-1) A subscription to utilize RapidAPI and Private Key to application
+1) A subscription to utilize RapidAPI and Private Key
 2) WEB3 subscription
 3) Ganache smart contract address
 4) Pinata private and public key
