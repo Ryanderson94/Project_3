@@ -31,10 +31,11 @@ Majority of the above libraries should be part of the base applications that wer
 
 Additionally, in order to run the application, users will need the following:
 
-1) A subscription to utilize RapidAPI and Private Key
+1) An API key, requiring creation of a login for rapidapi and then a free basic subscription to the booking.com api (https://rapidapi.com/tipsters/api/booking-com/)
 2) WEB3 subscription
 3) Ganache smart contract address
 4) Pinata private and public key
+5) Deployment of the hotelbooking_NFT.sol smart contract, located within the contracts sub-folder.
 
 ## Application Sections
 
