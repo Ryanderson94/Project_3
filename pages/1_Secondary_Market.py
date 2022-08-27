@@ -56,6 +56,7 @@ def pin_hotel_reservation(hotel_name, hotel_confirmation_file):
     return json_ipfs_hash
 
 
+# Function to pin historical price report
 def pin_historical_price_report(report_content):
     json_report = convert_data_to_json(report_content)
     report_ipfs_hash = pin_json_to_ipfs(json_report)
@@ -63,6 +64,7 @@ def pin_historical_price_report(report_content):
 
 ################################################################################
 
+# Import functions from crypto wallet file
 from crypto_wallet import generate_account, get_balance, send_transaction
 
 ################################################################################
@@ -95,13 +97,14 @@ def get_hotel(w3_wallet):
 # Streamlit Code
 
 # Streamlit application headings
-st.markdown("# Trade Your Hotel Rooms Here!")
-
-st.markdown("## Hotels on Sale!")
+st.markdown("# Buy and Sell Hotel Rooms Here!")
+st.markdown("## Hotels Available for Sale")
 st.text(" \n")
 
+# Set display image
 st.image(list(hotel_database.values())[0][4], width=400)
 
+# Open CSV file that contains details of hotels available for sale 
 with open('./hotels_on_secondary_market_list.csv', 'r') as f:
     file = csv.reader(f)
     hotels_on_secondary_market_list = list(file)
@@ -109,12 +112,15 @@ with open('./hotels_on_secondary_market_list.csv', 'r') as f:
     df_hotels_on_secondary_market_list.columns = ['hotel name','start date','end date','confimation','purchase price (Usd)','price listed (Eth)','token ID','seller address']
     ## to set "token ID" column to be index column so that later it can be used to look up other values
     df_hotels_on_secondary_market_list = df_hotels_on_secondary_market_list.set_index('token ID')
-st.write("hotels_on_sedondary_market_list",df_hotels_on_secondary_market_list)
 
+# Display subheader
+st.write("Hotels for Sale",df_hotels_on_secondary_market_list)
+
+# Set list of tokens available for purchase
 tokens_on_secondary_market_list = list(df_hotels_on_secondary_market_list)
 
-
 ################################################################################
+
 # Streamlit Sidebar Code - Start
 st.sidebar.markdown("## USD/Ether Converter")
 st.sidebar.markdown("## Current Account Address and Ether Balance")
@@ -130,6 +136,7 @@ st.sidebar.write(account.address)
 
 ##########################################
 
+# Display the balance of the wallet
 st.sidebar.write(get_balance(w3_wallet, account.address))
 
 ##########################################
@@ -137,18 +144,20 @@ st.sidebar.write(get_balance(w3_wallet, account.address))
 # Create a select box for user to list 
 st.sidebar.markdown("## SELL")
 
-## show existing token list
-
+# Show existing token list
 tokens = contract.functions.totalSupply().call()
 token_id_listed = st.sidebar.selectbox("Select a Reservation to Sell", list(range(tokens)))
 
+# Query booking information for selected hotel
 booking_info_listed = contract.functions.roomconfirmation(token_id_listed).call()
 
+# Display hotel details
 st.sidebar.write("Hotel Name: ", booking_info_listed[0])
 st.sidebar.write("Check In: ",booking_info_listed[1])
 st.sidebar.write("Check Out: ",booking_info_listed[2])
 st.sidebar.write("Purchase Price: ",booking_info_listed[4])
 
+# Set variable to determine the sellers desired sale price
 price_list_for_sale = st.sidebar.number_input("Sale Price (ETH)")
 
 # Identify the seller Ethereum Address
@@ -162,14 +171,17 @@ if st.sidebar.button("Finalize Token Sale"):
     booking_info_listed.append(price_list_for_sale)
     booking_info_listed.append(token_id_listed)
     booking_info_listed.append(seller_address)
-    ## hotel_listed_info = hotel_listed_info.append(account.address)
 
+    # Add hotel room token to the secondary market list
     tokens_on_secondary_market_list.append(token_id_listed) 
 
+    # Add hotel room details to the secondary market list
     hotels_on_secondary_market_list.append(booking_info_listed)
 
+    # Convert hotel list to dataframe
     df = pd.DataFrame(hotels_on_secondary_market_list)
 
+    # Turn dataframe into CSV
     df.to_csv('hotels_on_secondary_market_list.csv', index = False, header= None)
 
     st.balloons()
@@ -180,41 +192,40 @@ if st.sidebar.button("Finalize Token Sale"):
 st.sidebar.markdown("## *********************************")
 st.sidebar.markdown("## BUY")
 
-
+# Determine the number of tokens available for sale on the secondary market
 tokens = contract.functions.totalSupply().call()
 
+# Select a hotel to purchase
 token_id_listed = st.sidebar.selectbox("Select Reservation to Purchase", list(range(tokens)))
 
+# Query seller's address from selected token
 seller_address = df_hotels_on_secondary_market_list.loc[str(token_id_listed),'seller address']
 st.sidebar.write("Seller Address", seller_address)
 
-
+# Query and display buyer's address
 buyer_address = account.address
 st.sidebar.write("Buyer Address", buyer_address)
 
+# Subheader
 st.sidebar.markdown("Ethereum Balance Available")
 
 # Write the inTech Finder candidate's Ethereum balance to the sidebar
 st.sidebar.write(get_balance(w3_wallet,account.address)) 
 
-
 # Write the inTech Finder candidate's Daily rate to the sidebar
 price_to_pay_seller = st.sidebar.number_input("Purchase Price")
 
-
 ##########################################
 
+# Function to purchase and transfer hotel room NFT
 if st.sidebar.button("Pay Seller & Transfer NFT Ownership"):
-    # Transfer NYT
     contract.functions.transferFrom(seller_address,buyer_address,token_id_listed).transact({"from": seller_address, "gas": 3000000})
     st.sidebar.write("#### Just transfered ownership of token ID: ",token_id_listed)
 
     # make payament to seller
-    ##transaction_hash = send_transaction(w3_wallet,buyer_address,seller_address,price_to_pay_seller)
     transaction_hash = send_transaction(w3_wallet,account,seller_address,price_to_pay_seller)
 
     # Markdown for the transaction hash
-
     st.sidebar.markdown("#### Validated Transaction Hash")
 
     # Write the returned transaction hash to the screen
@@ -225,16 +236,19 @@ if st.sidebar.button("Pay Seller & Transfer NFT Ownership"):
 
 ## Transfer NFT ownership
 
+# Function to transfer NFT ownership only
 if st.sidebar.button("Transfer NFT Ownership"):
 
+    # Perform Contract function
     contract.functions.transferFrom(seller_address,buyer_address,token_id_listed).transact({"from": seller_address, "gas": 3000000})
 
+    # Display success message
     st.sidebar.write("#### Just transfered ownership of token ID: ",token_id_listed)
 
-
-    # Celebrate your successful payment
+    # Celebrate your successful transfer
     st.balloons()
 
+# Function to send payment only
 if st.sidebar.button("Send Payment"):
 
     transaction_hash = send_transaction(w3_wallet,account,seller_address,price_to_pay_seller)
