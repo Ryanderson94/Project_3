@@ -6,7 +6,8 @@ Did you know that almost 20% of hotels rooms booked online are cancelled before 
 
 <ins>**Introducing Hotel.io: a platform that addresses last minute cancellations and creates a win-win solution for prospective guests and hotel operators.**</ins>
 
-<ins>*Solution Overview*</ins>
+**<p align="center"><ins>Solution Overview</ins></p>**
+  
 ![image](https://user-images.githubusercontent.com/24529411/187001353-7e50df72-bada-4e8e-aaf3-552a5d418646.png)
 
 Hotel.io solves this problem by creating and implementing the following features:
@@ -45,7 +46,7 @@ On the back-end, a RapidAPI call is made to pull real-time hotel information wit
 **Please refer to the link and images for further detail:**
 [Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
-##### <ins>*Front-End: Option criteria when booking a reservation*</ins>
+##### **<p align="center"><ins>Front-End: Option criteria when booking a reservation</ins></p>**
 
 ![Hotel Booking](https://user-images.githubusercontent.com/24529411/187035298-d4462221-7fbb-4ed4-a49d-1c69b92ab5f5.gif)
 
@@ -68,11 +69,11 @@ Finally after the call to the smart contract has been executed and included on t
 
 **Please refer to the link and images for further detail:**
 
-##### <ins>*Front-End: Confirmation Receipt of Hotel Reservation (NFT / Tokenization)*</ins>
+##### **<p align="center"><ins>Front-End: Confirmation Receipt of Hotel Reservation (NFT / Tokenization)</ins></p>**
 
 ![Tokenization](https://user-images.githubusercontent.com/24529411/187035312-99d8f444-26b2-4bcf-9163-792707587b12.gif)
 
-##### <ins>*Back-End: Tokenizing the reservation*</ins>
+##### **<p align="center"><ins>Back-End: Tokenizing the reservation</ins></p>**
 
 ![image](https://user-images.githubusercontent.com/24529411/186999298-acc48300-193f-4b7f-b09b-66aa777aeea7.png)
 
@@ -87,7 +88,8 @@ Once the platform goes live, we have code built in to burn any tokens that have 
 **Please refer to the link and images for further detail:**
 [Secondary Market App](https://github.com/Ryanderson94/Project_3/blob/main/secondary_market.py)
 
-##### <ins>*Front-End: Interpreting the Secondary Market*</ins>
+##### **<p align="center"><ins>Front-End: Interpreting the Secondary Market</ins></p>**
+
 ![image](https://user-images.githubusercontent.com/24529411/187003587-09d5b4ea-8936-484d-bacd-22912a095b6d.png)
 
 ## Development Pipeline
@@ -109,7 +111,7 @@ There is a tremendous market opportunity, and we believe that demand will contin
 
 Please refer to the timeline below for an illustrative timeline of our product roadmap:
 
-<ins>*Product Roadmap*</ins>
+**<p align="center"><ins>Product Roadmap</ins></p>**
 
 ![image](https://user-images.githubusercontent.com/24529411/187032392-8b92d102-f3ca-44a3-a55e-a712db3991a6.png)
 
