@@ -83,11 +83,9 @@ Finally, after the call to the smart contract has been executed and included on 
 
 ### 3. Secondary Market: Relisting a Purchased Hotel Room
 
-While we attempted to design a way to disrupt the hotel market, as a byproduct we ended up creating an entirely new market to supplement it with our booking NFT market. A key component of this platform is the ability to empower consumers and give them the flexibility modern life demands. Within our secondary market you will find a suite of tools, ranging from being able to check the current price of any bookings you currently hold to browsing all other listings tailored to your unique filters and parameters. 
+While we attempted to design a way to disrupt the hotel market, as a byproduct we ended up creating an entirely new market to supplement it with our booking NFT market. A key component of this platform is the ability to empower consumers and give them the flexibility modern life demands. Within our secondary market you will find a suite of tools, ranging from being able to check the purchase price of any bookings you currently hold to browsing all other listings tailored to your unique filters and parameters. 
 
-Clients can list or delist their bookings based off their desires, while simultaneously being able to gauge the current market for their asset and determine the best path forward. Once a client has listed its NFT on the secondary market, the token is then pulled into a CSV for potential purchases to view in a readable format.
-
-Once the platform goes live, we have code built in to burn any tokens that have expired, meaning they will no longer exist because the current date is past the existing reservation date. This parameter is embedded in each of the smart contracts.
+Once a client has listed its NFT on the secondary market, the token is then pulled into a CSV for potential purchases to view in a readable format. Once the platform goes live, we have code built in to burn any tokens that have expired, meaning they will no longer exist because the current date is past the existing reservation date. This parameter is embedded in each of the smart contracts.
 
 **Please refer to the link and images for further detail:**
 [Secondary Market App](https://github.com/Ryanderson94/Project_3/blob/main/pages/1_Secondary_Market.py)
