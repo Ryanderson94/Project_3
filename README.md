@@ -69,7 +69,7 @@ Note that these variables should automatically be pulled from the purchased rese
 
 With this information the deployed contract will insert them into a dictionary called <ins>**room-confirmation**</ins> and start the process of minting a unique Hotel Reservation Token. Once the token has been minted we connect the TokenID to a unique URI (Uniform Resource Identifer) which identifies the location of the token on the BlockChain/IPFS and permanently links the tokenID to the created room-confirmation dictionary.
 
-Finally, after the call to the smart contract has been executed and included on the Blockchain, the customer is provided the minted TokenID, the mined transaction receipt, and a hotel reservation IPFS link to their tokenized reservation NFT for their future reference. With this created NFT for their reservation they will have the capability of listing it on our secondary market.
+Finally, after the call to the smart contract has been executed and included on the Blockchain, the customer is provided the minted TokenID, the mined transaction receipt, and a hotel reservation IPFS link to their tokenized reservation NFT for their future reference. With this created NFT for their reservation, they will have the capability of listing it on our secondary market.
 
 **Please refer to the link and images for further detail:** [Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
