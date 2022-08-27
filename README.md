@@ -2,11 +2,13 @@
 
 ## Overview & Features
 
+**<p align="center"><ins>The Problem</ins></p>**
+
 Did you know that almost 20% of hotels rooms booked online are cancelled before the guest arrives? This not only directly impacts the revenue of the hotel, but also leads to poor marketing, since Online Travel Agencies keep track of cancellations drawn by a hotel. The prospective guest is hit with cancellation fees and left dissatisfied. All in all, in the event of a cancellation there is an apparent lose-lose relationship between prospective guests and hotel operators. We strive to solve this crucial pain point.
 
-<ins>**Introducing Hotel.io: a platform that addresses last minute cancellations and creates a win-win solution for prospective guests and hotel operators.**</ins>
-
 **<p align="center"><ins>Solution Overview</ins></p>**
+
+<ins>**Introducing Hotel.io: a platform that addresses last minute cancellations and creates a win-win solution for prospective guests and hotel operators.**</ins>
   
 ![image](https://user-images.githubusercontent.com/24529411/187001353-7e50df72-bada-4e8e-aaf3-552a5d418646.png)
 
