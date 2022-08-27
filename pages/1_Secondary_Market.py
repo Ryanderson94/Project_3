@@ -109,8 +109,7 @@ with open('./hotels_on_secondary_market_list.csv', 'r') as f:
     file = csv.reader(f)
     hotels_on_secondary_market_list = list(file)
     df_hotels_on_secondary_market_list = pd.DataFrame(hotels_on_secondary_market_list)
-    df_hotels_on_secondary_market_list.columns = ['hotel name','start date','end date','confimation','purchase price (Usd)','price listed (Eth)','token ID','seller address']
-    ## to set "token ID" column to be index column so that later it can be used to look up other values
+    df_hotels_on_secondary_market_list.columns = ['hotel name','start date','end date','confirmation','purchase price (Usd)','price listed (Eth)','token ID','seller address']
     df_hotels_on_secondary_market_list = df_hotels_on_secondary_market_list.set_index('token ID')
 
 # Display subheader
@@ -212,8 +211,16 @@ st.sidebar.markdown("Ethereum Balance Available")
 # Write the inTech Finder candidate's Ethereum balance to the sidebar
 st.sidebar.write(get_balance(w3_wallet,account.address)) 
 
-# Write the inTech Finder candidate's Daily rate to the sidebar
-price_to_pay_seller = st.sidebar.number_input("Purchase Price")
+# Query and display room price
+requested_price = df_hotels_on_secondary_market_list.loc[str(token_id_listed),'price listed (Eth)']
+
+# Convert requested price to float
+requested_price = float(requested_price)
+st.sidebar.write('Hotel Room Price (ETH)')
+st.sidebar.write(requested_price)
+
+# Set price to pay. Set minimum value to the amount requested by the seller
+price_to_pay_seller = st.sidebar.number_input(label="Purchase Price", min_value=requested_price)
 
 ##########################################
 
@@ -222,7 +229,7 @@ if st.sidebar.button("Pay Seller & Transfer NFT Ownership"):
     contract.functions.transferFrom(seller_address,buyer_address,token_id_listed).transact({"from": seller_address, "gas": 3000000})
     st.sidebar.write("#### Just transfered ownership of token ID: ",token_id_listed)
 
-    # make payament to seller
+    # make payment to seller
     transaction_hash = send_transaction(w3_wallet,account,seller_address,price_to_pay_seller)
 
     # Markdown for the transaction hash
@@ -231,8 +238,16 @@ if st.sidebar.button("Pay Seller & Transfer NFT Ownership"):
     # Write the returned transaction hash to the screen
     st.sidebar.write(transaction_hash)
 
+### JAMES THIS IS WHERE YOU NEED TO FIX
+    # Remove hotel from available list
+    df_hotels_on_secondary_market_list = df_hotels_on_secondary_market_list.drop()
+
+    # Re-write CSV
+    df_hotels_on_secondary_market_list.to_csv('hotels_on_secondary_market_list.csv', index = False, header= None)
+
     # Celebrate your successful payment
     st.balloons()
+
 
 ## Transfer NFT ownership
 
