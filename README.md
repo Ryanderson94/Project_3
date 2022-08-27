@@ -87,7 +87,7 @@ Clients can list or delist their bookings based off their desires, while simulta
 Once the platform goes live, we have code built in to burn any tokens that have expired, meaning they will no longer exist because the current date is past the existing reservation date. This parameter is embedded in each of the smart contracts.
 
 **Please refer to the link and images for further detail:**
-[Secondary Market App](https://github.com/Ryanderson94/Project_3/blob/main/secondary_market.py)
+[Secondary Market App](https://github.com/Ryanderson94/Project_3/blob/main/pages/1_Secondary_Market.py)
 
 ##### **<p align="center"><ins>Front-End: Interpreting the Secondary Market</ins></p>**
 
