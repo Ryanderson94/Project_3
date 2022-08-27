@@ -68,7 +68,7 @@ With this information the deployed contract will insert them into a dictionary c
 
 Finally after the call to the smart contract has been executed and included on the Blockchain the minted TokenID, the transaction receipt mined and a hotel reservation IPFS link to your tokenized reservation NFT is provided to the customer for their future reference. With a created NFT for their reservation they will have the capability of listing it on our secondary market.
 
-**Please refer to the link and images for further detail:**
+**Please refer to the link and images for further detail:** [Hotel Reservation App](https://github.com/Ryanderson94/Project_3/blob/main/hotel_reservation_app.py)
 
 ##### **<p align="center"><ins>Front-End: Confirmation Receipt of Hotel Reservation (NFT / Tokenization)</ins></p>**
 
